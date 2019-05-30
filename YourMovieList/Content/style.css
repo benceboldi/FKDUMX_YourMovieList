@@ -1,0 +1,104 @@
+﻿body {
+    font-family: Arial;
+    font-size: 18px;
+}
+
+input[type="button"] {
+	-moz-box-shadow: 0px 10px 14px -7px #3e7327;
+	-webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #93ffa9), color-stop(1, #72b352));
+	background:-moz-linear-gradient(top, #93ffa9 5%, #72b352 100%);
+	background:-webkit-linear-gradient(top, #93ffa9 5%, #72b352 100%);
+	background:-o-linear-gradient(top, #93ffa9 5%, #72b352 100%);
+	background:linear-gradient(to bottom, #93ffa9 5%, #72b352 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#93ffa9', endColorstr='#72b352',GradientType=0);
+	background-color:#93ffa9;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #4b8f29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+input[type="button"]:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #72b352), color-stop(1, #93ffa9));
+	background:-moz-linear-gradient(top, #72b352 5%, #93ffa9 100%);
+	background:-webkit-linear-gradient(top, #72b352 5%, #93ffa9 100%);
+	background:-o-linear-gradient(top, #72b352 5%, #93ffa9 100%);
+	background:linear-gradient(to bottom, #72b352 5%, #93ffa9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#93ffa9',GradientType=0);
+	background-color:#72b352;
+}
+input[type="button"]:active {
+	position:relative;
+	top:1px;
+}
+table {
+  border-spacing: 0px;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 15px;
+  font-family:Arial;
+  font-weight:bold;
+  background-color: transparent; /* Change the background-color of table here */
+  text-align: left; /* Change the text-alignment of table here */
+}
+
+th {
+  font-weight: bold;
+  border: 1px solid #cccccc; /* Change the border-color of heading here */
+  padding: 8px;
+}
+
+td {
+  border: 1px solid #cccccc; /* Change the border-color of cells here */
+  padding: 8px;
+}
+
+/* Stylized */
+
+/* Adding Striped Effect for odd rows */
+
+tr {
+  background-color: transparent; /* Change the default background-color of rows here */
+  font-size:15px;
+}
+
+tr:nth-of-type(2n+1) {
+  background-color: #ffffff; /* Change the background-color of odd rows here */
+  font-size:15px;
+}
+
+tr th {
+  background-color: #72b352;
+  color: #ffffff;
+   /* Change the background-color of heading here */
+}
+
+/* Removing left and right border of rows for modern UIs */
+
+tr {
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+
+th, td {
+  border: none;
+}
+
+#sumOfAdded {
+    font-size: 40px;
+    text-align:center;
+    padding-bottom: 0px;
+}
+#divReset{
+    text-align:center;
+}

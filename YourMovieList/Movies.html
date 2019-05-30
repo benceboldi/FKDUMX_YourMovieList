@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="Content/style.css" />
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var tableMovies = $('#tableMovies');
+            var sum = "0";
+            var sumOfAdded = $('#sumOfAdded');
+            sumOfAdded.append(sum + ' minutes');
+            $('#btn').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'api/Movies',
+                    dataType: 'json',
+                    success: function (data) {
+                        tableMovies.empty();
+                        tableMovies.append('<thead><tr><th>Title</th><th>Language</th><th>Length</th><th>Imdb</th><th>Director</th><th>Genre</th><th></th></tr></thead><tbody>');
+                        $.each(data, function (index, val) {
+                            var Id = val.movieID
+                            var Title = val.title;
+                            var Language = val.language;
+                            var Length = val.length;
+                            var Imdb = val.imdb;
+                            var Director = val.director;
+                            var Genre = val.genre;
+                            tableMovies.append('<tr><td>' + Title + '</td><td>' + Language + '</td><td class = "lgth">' + Length + ' minutes</td><td>'
+                                + '<a href="' + Imdb + '">IMDB</a></td><td>' + Director + '</td><td>' + Genre +
+                                '<td><input  class="btnAdd" type="button" value="Add"/></td></tr>');
+                        });
+                        tableMovies.append('</tbody>');
+                        $('.btnAdd').click(function () {
+                            sumOfAdded.empty();
+                            var length = $(this).closest('tr').find('.lgth').text();
+                            
+                            sum = parseInt(sum, 10) + parseInt(length, 10);
+                            var days = parseInt(sum, 10) / 60 / 24;
+                            var hours = parseInt(sum, 10) / 60;
+
+                            sumOfAdded.append(hours.toFixed(2) + ' hours or ' + days.toFixed(2) + ' days');
+                        });
+                    }
+                });
+            });
+            $('#btnClear').click(function ()
+            {
+                tableMovies.empty();
+            });
+
+            $('#btnSubmit').click(function () {
+                var movie = {
+                    'title': $('#Title').val(),
+                    'language': $('#Language').val(),
+                    'length': $('#Length').val(),
+                    'Imdb': $('#Imdb').val(),
+                    'director': $('#Director').val(),
+                    'genre': $('#Genre').val()
+                }
+                console.log(movie);
+                $.ajax({
+                    type: 'POST',
+                    url: 'api/Movies',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(movie),
+                    success: function (data) {
+                        alert("success");
+                    },
+                    error: function()
+                    {
+                        alert("error");
+                    }
+                });
+            });
+
+            $('#Reset').click(function () {
+                sum = "0";
+                sumOfAdded.empty();
+                sumOfAdded.append(sum + ' minutes');
+            });
+        });
+    </script>
+</head>
+<body>
+    <input id="btn" type="button" value="List All Movies"/>
+    <input id="btnClear" type="button" value="Clear" />
+    <table id="tableMovies">
+    </table>
+    <label>Can't seem to find your favourite movie? Add it now!</label>
+    <form>
+        <input type="text" name="Title" id="Title" placeholder="Title" />
+        <input type="text" name="Language" id="Language" placeholder="Language" />
+        <input type="number" name="Length" id="Length" placeholder="Length" />
+        <input type="text" name="Imdb" id="Imdb" placeholder="Imdb link" />
+        <input type="text" name="Director" id="Director" placeholder="Director" />
+        <input type="text" name="Genre" id="Genre" placeholder="Genre" />
+        <input type="button" id="btnSubmit" value="Submit" />
+    </form>
+    <p>The time you've spent watching movies: </p>
+    <p id="sumOfAdded"></p>
+    <div id="divReset">
+        <input id="Reset" type="button" value="Reset" />
+    </div>
+</body>
+</html>
